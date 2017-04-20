@@ -1,0 +1,52 @@
+.out
+	position: relative
+	height: 80vh
+.wrapper
+	margin: 50px auto
+	background: #EDF3FD
+	padding: 50px
+	width: 300px
+.callback-form
+	&__input
+		display: block
+		width: 100%
+		padding: 5px 8px
+		background: #EDF3FD
+		margin-bottom: 20px
+		border: 1px solid #BCC4D2
+		position: relative
+		z-index: 1
+		transition: all .3s
+		&.error-input + .hint
+			display: block
+			opacity: 1
+			transform: translateY(15px)
+	&__btn
+		display: block
+		width: 70%
+		text-transform: uppercase
+		background: #B3CAEF
+		margin: 0 auto
+		padding: 5px 8px
+		margin-top: 30px
+		transition: background .3s
+		font-weight: 700
+		&:hover
+			background: #99B8EA
+.error-input
+	box-shadow: inset 0 0 5px red
+.valid-input
+	box-shadow: inset 0 0 5px green
+.input-wrapper
+	position: relative
+.hint
+	font-size: 12px
+	position: absolute
+	bottom: 0px
+	left: 0
+	width: 100%
+	padding-left: 8px
+	z-index: 0
+	transition: all .3s
+	opacity: 0
+	transform: translateY(0)
