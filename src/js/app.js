@@ -50,7 +50,6 @@ $(document).ready(function(){
 
 		switch (nameStr) {
 			case "name":
-			case "surname":
 			if(!isValidGeneral(val)){
 				input.addClass('error-input')
 			}else{
