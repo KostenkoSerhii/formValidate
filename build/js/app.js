@@ -2758,66 +2758,69 @@ $(document).ready(function () {
 		e.preventDefault();
 
 		var $thisForm = $(this);
-		var $inputs = $thisForm.find("input");
-		var status = 1;
+		var $fields = $thisForm.find(".form-field");
+		var formStatus = 1;
+		var fieldStatus = 1;
 
-		$inputs.removeClass("error-input");
-		$inputs.removeClass("valid-input");
-		$thisForm.find("input").each(function () {
+		$fields.removeClass("error-field valid-field");
+
+		$thisForm.find(".form-field").each(function () {
 			var $this = $(this);
 			validateInput($this);
 		});
 
-		if ($inputs.hasClass("error-input")) {
-			status = 0;
-		} else {
-			$inputs.addClass("valid-input");
+		if (fieldStatus == 0) {
+			formStatus = 0;
 		}
 
-		if (status == 1) {
+		if (formStatus == 1) {
+			console.log("form status ok");
 			$.ajax({
 				url: 'mail.php',
 				type: 'GET',
 				data: $(this).serialize(),
 				success: function success() {
 					console.log("success");
-					$inputs.removeClass('valid-input');
+					$fields.removeClass('valid-field');
 					$thisForm.trigger("reset");
 				}
 			});
-		}
-	});
-
-	function validateInput(input) {
-		var val = input.val();
-		var nameStr = input.attr("name");
-
-		switch (nameStr) {
-			case "name":
-				if (!isValidGeneral(val)) {
-					input.addClass('error-input');
-				} else {
-					input.addClass('valid-input');
-				}break;
-
-			case "phone":
-				if (!isValidPhope(val)) {
-					input.addClass('error-input');
-				} else {
-					input.addClass('valid-input');
-				}break;
-
-			case "e-mail":
-				if (!isValidEmail(val)) {
-					input.addClass('error-input');
-				} else {
-					input.addClass('valid-input');
-				}break;
-
-			default:
-				;
 		};
-	};
+
+		function validateInput(input) {
+			var val = input.val();
+			var nameStr = input.attr("name");
+
+			switch (nameStr) {
+				case "name":
+					if (!isValidGeneral(val)) {
+						input.addClass('error-field');
+						fieldStatus = 0;
+					} else {
+						//input.addClass('valid-field')
+					}break;
+
+				case "phone":
+					if (!isValidPhope(val)) {
+						input.addClass('error-field');
+						fieldStatus = 0;
+					} else {
+						//input.addClass('valid-field')
+					}break;
+
+				case "e-mail":
+					if (!isValidEmail(val)) {
+						input.addClass('error-field');
+						fieldStatus = 0;
+					} else {
+						//input.addClass('valid-field')
+					}break;
+
+				default:
+					;
+			};
+		};
+	});
 
 	function isValidGeneral(val) {
 		if (val.length >= 2) return 1;

@@ -17,7 +17,7 @@
 		position: relative
 		z-index: 1
 		transition: all .3s
-		&.error-input + .hint
+		&.error-field + .hint
 			display: block
 			opacity: 1
 			transform: translateY(15px)
@@ -33,11 +33,11 @@
 		font-weight: 700
 		&:hover
 			background: #99B8EA
-.error-input
+.error-field
 	box-shadow: inset 0 0 5px red
-.valid-input
+.valid-field
 	box-shadow: inset 0 0 5px green
-.input-wrapper
+.field-wrapper
 	position: relative
 .hint
 	font-size: 12px
